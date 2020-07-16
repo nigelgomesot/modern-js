@@ -93,39 +93,74 @@ console.clear();
 
 // ES-6 Classes
 
+// class Person {
+//   constructor(firstName, lastName, dob) {
+//     this.firstName = firstName;
+//     this.lastName = lastName;
+//     this.dob = new Date(dob);
+//   }
+
+//   greeting() {
+//     return console.log(`Hello ${this.firstName} ${this.lastName}!`);
+//   }
+
+//   relocateToCity(newCity) {
+//     this.city = newCity;
+//   }
+
+//   getAge() {
+//     const diff = Date.now() - this.dob.getTime();
+//     const dateDiff = new Date(diff);
+
+//     return Math.abs(dateDiff.getUTCFullYear() - 1970);
+//   }
+
+//   static availableCities() {
+//     return [
+//       'Chicago',
+//       'Texas',
+//     ];
+//   }
+// }
+
+// const jane = new Person('Jane', 'Doe', '1990-05-31');
+// console.log(jane.greeting());
+// jane.relocateToCity('Chicago');
+// console.log(jane.getAge());
+// console.dir(jane);
+// console.dir(Person.availableCities());
+
+
+// ES-6 Sub-Classes
+
 class Person {
-  constructor(firstName, lastName, dob) {
+  constructor(firstName, lastName) {
     this.firstName = firstName;
     this.lastName = lastName;
-    this.dob = new Date(dob);
   }
 
   greeting() {
-    return console.log(`Hello ${this.firstName} ${this.lastName}!`);
-  }
-
-  relocateToCity(newCity) {
-    this.city = newCity;
-  }
-
-  getAge() {
-    const diff = Date.now() - this.dob.getTime();
-    const dateDiff = new Date(diff);
-
-    return Math.abs(dateDiff.getUTCFullYear() - 1970);
-  }
-
-  static availableCities() {
-    return [
-      'Chicago',
-      'Texas',
-    ];
+    return `Hello ${this.firstName} ${this.lastName}!`;
   }
 }
 
-const jane = new Person('Jane', 'Doe', '1990-05-31');
+
+class Customer extends Person {
+  constructor(firstName, lastName, membershipType) {
+    super(firstName, lastName);
+
+    this.membershipType = membershipType;
+  }
+
+  greeting() {
+    return `Hello ${this.firstName} ${this.lastName}! We are glad to welcome you as a valued ${this.membershipType} member`;
+  }
+}
+
+const john = new Person('John', 'Doe');
+console.log(john);
+console.log(john.greeting());
+
+const jane = new Customer('Jane', 'Doe', 'premium');
+console.log(jane);
 console.log(jane.greeting());
-jane.relocateToCity('Chicago');
-console.log(jane.getAge());
-console.dir(jane);
-console.dir(Person.availableCities());
