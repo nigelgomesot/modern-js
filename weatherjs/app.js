@@ -1,10 +1,24 @@
-const weather = new Weather('Chicago', 'Illinois');
+const storage = new Storage();
+const weatherLocation = storage.getLocationData();
+const weather = new Weather(weatherLocation.city, weatherLocation.state);
+const ui = new UI();
 
-// weather.changeLocation('Miami', 'Florida')
+document.getElementById('w-change-btn').addEventListener('click', event => {
+  const city = document.getElementById('city').value;
+  const state = document.getElementById('state').value;
+
+  weather.changeLocation(city, state);
+  storage.setLocationData(city, state);
+
+  getWeather();
+
+  $('#locModal').modal('hide');
+})
 
 const getWeather = () => {
   weather.getWeather()
-  .then(console.log)
+  .then(results => {
+    ui.paint(results)})
   .catch(console.warn);
 }
 
