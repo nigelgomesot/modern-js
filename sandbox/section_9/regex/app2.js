@@ -57,6 +57,38 @@ str = 'Hellllllo World';
 re = /([0-9]x){3}/i;
 str = '3x3x3x';
 
+// Shorthand
+re = /\w/;
+re = /\w+/;
+str = '3x3x3x';
+
+re = /\W/;
+str = '(3x3x3x';
+
+re = /\d/;
+re = /\d+/;
+str = '33333x';
+
+re = /\D/;
+str = '33333x';
+
+re = /\s/;
+re = /\s+/;
+str = '33  333x';
+
+re = /\S/;
+str = '  333x';
+
+// Word Boundary
+re = /abc\b/;
+str = 'abcd abc';
+
+// Assertions
+re=/x(?=y)/;
+str = 'abcxyz';
+
+re=/x(?!y)/;
+str = 'abcxz';
 
 const result = re.exec(str)
 console.log(result);
